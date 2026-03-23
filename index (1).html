@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha Singh — AI & Data Science Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink:        #EAE6DE;
+    --ink-soft:   #A8A49C;
+    --ink-mute:   #5E5A54;
+    --paper:      #111009;
+    --paper-2:    #1A1814;
+    --amber:      #F0A030;
+    --amber-lt:   rgba(240,160,48,0.10);
+    --teal:       #2A8A7A;
+    --teal-lt:    rgba(42,138,122,0.15);
+    --coral:      #D45A3A;
+    --coral-lt:   rgba(212,90,58,0.15);
+    --rule:       #2A2720;
+    --charcoal:   #1E1C17;
+    --charcoal-2: #242118;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Grain overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17,16,9,0.90);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--amber); }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    padding-top: 5rem;
+    background: var(--paper);
+  }
+
+  .hero-left {
+    padding: 8rem 3rem 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.2rem, 5vw, 5rem);
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--amber);
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.3s forwards;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.5s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: #111009;
+  }
+  .btn-primary:hover { background: #FFB040; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--rule);
+  }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* ── Hero right — decorative grid ── */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+    border-left: 1px solid var(--rule);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    opacity: 0;
+    animation: fadeIn 1s 0.6s forwards;
+  }
+
+  .hero-grid-cell {
+    border-right: 1px solid rgba(240,160,48,0.06);
+    border-bottom: 1px solid rgba(240,160,48,0.06);
+    transition: background 0.3s;
+  }
+
+  .hero-grid-cell:hover { background: rgba(240,160,48,0.08); }
+
+  .hero-card {
+    position: absolute;
+    background: var(--charcoal-2);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    box-shadow: 4px 4px 0 rgba(240,160,48,0.15);
+  }
+
+  .hc1 { top: 18%; left: 10%; width: 65%; opacity: 0; animation: slideIn 0.7s 0.8s forwards; }
+  .hc2 { top: 48%; left: 22%; width: 60%; opacity: 0; animation: slideIn 0.7s 1.0s forwards; }
+  .hc3 { top: 72%; left: 8%;  width: 70%; opacity: 0; animation: slideIn 0.7s 1.2s forwards; }
+
+  .hc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.4rem;
+  }
+
+  .hc-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .hc-bar {
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+    margin-top: 0.6rem;
+    overflow: hidden;
+  }
+
+  .hc-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+    animation: growBar 1.2s 1.4s both;
+  }
+
+  /* ── Section base ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ── Skills section ── */
+  .skills-section {
+    padding: 6rem 0;
+    background: var(--charcoal);
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skills-section .section-label { color: var(--amber); }
+  .skills-section .section-title { color: var(--ink); }
+  .skills-section .section-subtitle { color: var(--ink-soft); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+
+  .skill-card {
+    padding: 2rem 1.8rem;
+    background: var(--paper-2);
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+
+  .skill-card:hover { background: rgba(240,160,48,0.07); }
+
+  .skill-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(240,160,48,0.12);
+    border: 1px solid rgba(240,160,48,0.25);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    background: rgba(240,160,48,0.08);
+    color: var(--amber);
+    border: 1px solid rgba(240,160,48,0.18);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Projects section ── */
+  .projects-section {
+    padding: 6rem 0;
+    background: var(--paper);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--charcoal);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    border-color: rgba(240,160,48,0.3);
+  }
+
+  .project-card-top {
+    height: 3px;
+  }
+
+  .card-amber { background: var(--amber); }
+  .card-teal  { background: var(--teal); }
+  .card-coral { background: var(--coral); }
+  .card-ink   { background: #3A3630; }
+
+  .project-card-body {
+    padding: 1.8rem 1.8rem 1.4rem;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+  }
+
+  .project-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .badge-live {
+    background: rgba(42,138,90,0.18);
+    color: #4ADE80;
+    border: 1px solid rgba(42,138,90,0.3);
+  }
+
+  .badge-upcoming {
+    background: rgba(240,160,48,0.12);
+    color: var(--amber);
+    border: 1px solid rgba(240,160,48,0.25);
+  }
+
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 1.4rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    background: rgba(255,255,255,0.04);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.1rem;
+  }
+
+  .project-link {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-mute);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .project-link:hover { color: var(--amber); }
+
+  .project-link-disabled {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    opacity: 0.4;
+  }
+
+  /* ── Writing section ── */
+  .writing-section {
+    padding: 6rem 0;
+    background: var(--charcoal);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .article-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, padding 0.2s, margin 0.2s;
+  }
+
+  .article-item:hover { background: rgba(240,160,48,0.06); margin: 0 -3rem; padding: 1.6rem 3rem; }
+
+  .article-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+
+  .article-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .article-desc {
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+  }
+
+  .article-arrow {
+    font-size: 1.1rem;
+    color: var(--ink-mute);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .article-item:hover .article-arrow { transform: translateX(4px); color: var(--amber); }
+
+  /* ── About section ── */
+  .about-section {
+    padding: 6rem 0;
+    background: var(--paper-2);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text strong { color: var(--amber); }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .stat-box {
+    background: var(--charcoal);
+    padding: 1.8rem 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .stat-box:hover { background: rgba(240,160,48,0.07); }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-num span { color: var(--amber); }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-mute);
+    line-height: 1.4;
+  }
+
+  /* ── Contact section ── */
+  .contact-section {
+    padding: 6rem 0 5rem;
+    background: var(--charcoal-2);
+    color: var(--ink);
+    text-align: center;
+    border-top: 1px solid rgba(240,160,48,0.2);
+  }
+
+  .contact-section .section-label { color: var(--amber); }
+
+  .contact-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--amber);
+  }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .cl-amber {
+    background: var(--amber);
+    color: #111009;
+  }
+  .cl-amber:hover { background: #FFB040; }
+
+  .cl-ghost {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+  }
+  .cl-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* ── Footer ── */
+  footer {
+    background: #0A0906;
+    color: var(--ink-mute);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes growBar {
+    from { width: 0; }
+    to   { width: var(--w); }
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    .section-inner { padding: 0 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .article-item { grid-template-columns: 50px 1fr auto; gap: 1rem; }
+    .article-item:hover { margin: 0 -1.5rem; padding: 1.6rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Neha Singh</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Senior AI & Data Science Engineer</div>
+    <h1 class="hero-name">Neha<br><em>Singh</em></h1>
+    <div class="hero-title">Building AI that works in the real world</div>
+    <p class="hero-bio">
+      I design and ship production AI systems — multilingual chatbots, intelligent 
+      routing platforms, and analytics pipelines — on stacks built around 
+      Azure OpenAI, FastAPI, Snowflake, and LangChain.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-grid" id="heroGrid"></div>
+
+    <div class="hero-card hc1">
+      <div class="hc-label">Current Role</div>
+      <div class="hc-value">Senior Technical Specialist – GenAI</div>
+      <div style="font-size:0.8rem;color:var(--ink-mute);margin-top:0.2rem;">Zensar Technologies · Compass Digital</div>
+    </div>
+
+    <div class="hero-card hc2">
+      <div class="hc-label">Core Expertise</div>
+      <div class="hc-value">LLMs · RAG · Multilingual NLP</div>
+      <div class="hc-bar"><div class="hc-fill" style="--w:82%;"></div></div>
+    </div>
+
+    <div class="hero-card hc3">
+      <div class="hc-label">Experience</div>
+      <div class="hc-value">6+ years across Bain, Evalueserve & Zensar</div>
+      <div style="font-size:0.8rem;color:var(--ink-mute);margin-top:0.2rem;">Healthcare · Finance · Consumer Products</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label reveal">Technical Stack</div>
+    <h2 class="section-title reveal">What I build <em style="font-style:italic;font-family:Fraunces,serif;font-weight:300;color:var(--amber);">with</em></h2>
+    <p class="section-subtitle reveal" style="color:rgba(250,248,244,0.55);">
+      End-to-end AI engineering — from embeddings and retrieval to production APIs and data pipelines.
+    </p>
+
+    <div class="skills-grid reveal">
+
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">Generative AI</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">LLM engineering, prompt design, RAG pipelines, AI agents</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GPT-4o</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">Azure OpenAI</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">Multilingual NLP</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">Language detection, translation, cross-lingual orchestration</div>
+        <div class="skill-tags">
+          <span class="skill-tag">fast_langdetect</span>
+          <span class="skill-tag">BERT</span>
+          <span class="skill-tag">5 languages</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">Data Engineering</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">Pipelines, stored procedures, analytics at scale</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">Cortex</span>
+          <span class="skill-tag">Azure DF</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🔌</div>
+        <div class="skill-name">API Development</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">Production APIs, SSE streaming, intelligent routing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">SSE</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">REST</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-name">ML & Analytics</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">Clustering, classification, quality scoring, predictive models</div>
+        <div class="skill-tags">
+          <span class="skill-tag">BERTopic</span>
+          <span class="skill-tag">K-Means</span>
+          <span class="skill-tag">HDBSCAN</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">MLOps & Tooling</div>
+        <div style="font-size:0.82rem;color:rgba(250,248,244,0.5);">Model deployment, evaluation, cloud AI infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Azure ML</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">DevOps</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-label reveal">Featured Work</div>
+    <h2 class="section-title reveal">Things I've <em style="font-style:italic;font-family:Fraunces,serif;font-weight:300;color:var(--amber);">shipped</em></h2>
+    <p class="section-subtitle reveal">
+      Production systems, not demos. Each one lives in a real environment, serving real users.
+    </p>
+
+    <div class="projects-grid">
+
+      <!-- PDF Chatbot — LIVE -->
+      <div class="project-card reveal">
+        <div class="project-card-top card-amber"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <span class="project-number">01</span>
+            <span class="project-badge badge-live">Live</span>
+          </div>
+          <h3 class="project-title">PDF Chatbot</h3>
+          <p class="project-desc">
+            Upload any PDF and chat with it using RAG. Chunks your document, embeds it 
+            with OpenAI, retrieves relevant context via cosine similarity, and answers 
+            grounded in your document — not hallucinated.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Streamlit</span>
+            <span class="stack-chip">OpenAI</span>
+            <span class="stack-chip">RAG</span>
+            <span class="stack-chip">pdfplumber</span>
+            <span class="stack-chip">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yourusername/pdf-chatbot" target="_blank" class="project-link">⎋ GitHub →</a>
+            <a href="https://medium.com/@yourhandle" target="_blank" class="project-link">✎ Article →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heidi HD — LIVE -->
+      <div class="project-card reveal">
+        <div class="project-card-top card-teal"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <span class="project-number">02</span>
+            <span class="project-badge badge-live">Live</span>
+          </div>
+          <h3 class="project-title">Heidi HD — Intelligent Chat Platform</h3>
+          <p class="project-desc">
+            Multi-version FastAPI platform for Compass Digital. Four API versions — 
+            OpenAI Assistant, Snowflake Cortex Analytics, LLM-powered routing, and 
+            multilingual NLP — unified under one SSE streaming endpoint.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">FastAPI</span>
+            <span class="stack-chip">Azure OpenAI</span>
+            <span class="stack-chip">Snowflake</span>
+            <span class="stack-chip">SSE</span>
+            <span class="stack-chip">Multilingual</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link-disabled">⎋ Private repo</span>
+            <a href="https://medium.com/@yourhandle" target="_blank" class="project-link">✎ Article →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Excel Chatbot — UPCOMING -->
+      <div class="project-card reveal">
+        <div class="project-card-top card-coral"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <span class="project-number">03</span>
+            <span class="project-badge badge-upcoming">Upcoming</span>
+          </div>
+          <h3 class="project-title">Excel Chatbot</h3>
+          <p class="project-desc">
+            Drop any Excel file and ask questions in plain English. Generates Pandas 
+            queries on the fly, executes them safely, and explains results in natural 
+            language. No SQL knowledge needed.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Streamlit</span>
+            <span class="stack-chip">OpenAI</span>
+            <span class="stack-chip">Pandas</span>
+            <span class="stack-chip">openpyxl</span>
+            <span class="stack-chip">Code Interpreter</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link-disabled">⌛ Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent Builder — UPCOMING -->
+      <div class="project-card reveal">
+        <div class="project-card-top card-ink"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <span class="project-number">04</span>
+            <span class="project-badge badge-upcoming">Upcoming</span>
+          </div>
+          <h3 class="project-title">Build Your Own AI Agent</h3>
+          <p class="project-desc">
+            A no-code interface where you define your agent's goal, tools, and persona — 
+            and it gets to work. Web search, file reading, data analysis. 
+            Your agent, your rules, zero infrastructure needed.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">LangChain</span>
+            <span class="stack-chip">OpenAI</span>
+            <span class="stack-chip">Tool Use</span>
+            <span class="stack-chip">Streamlit</span>
+            <span class="stack-chip">ReAct</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link-disabled">⌛ Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WRITING ── -->
+<section class="writing-section" id="writing">
+  <div class="section-inner">
+    <div class="section-label reveal">From the Blog</div>
+    <h2 class="section-title reveal">Latest <em style="font-style:italic;font-family:Fraunces,serif;font-weight:300;color:var(--amber);">writing</em></h2>
+    <p class="section-subtitle reveal">
+      Practical posts for engineers dealing with the messy middle of building AI in production.
+    </p>
+
+    <div class="article-list reveal">
+
+      <a href="https://medium.com/@yourhandle" target="_blank" class="article-item">
+        <div class="article-num">01</div>
+        <div>
+          <div class="article-title">I Built a PDF Chatbot with RAG in 200 Lines of Python</div>
+          <div class="article-desc">Architecture, chunking strategy, cosine retrieval, and where it breaks in production</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+
+      <div class="article-item" style="opacity:0.45;cursor:default;">
+        <div class="article-num">02</div>
+        <div>
+          <div class="article-title">Why I Built 4 API Versions for One Chatbot</div>
+          <div class="article-desc">Coming soon — the Heidi HD architecture deep dive</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </div>
+
+      <div class="article-item" style="opacity:0.45;cursor:default;">
+        <div class="article-num">03</div>
+        <div>
+          <div class="article-title">Hindi in Roman Script Looks Like Tagalog — Here's the Fix</div>
+          <div class="article-desc">Coming soon — language detection edge cases and hybrid pipeline design</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </div>
+
+      <div class="article-item" style="opacity:0.45;cursor:default;">
+        <div class="article-num">04</div>
+        <div>
+          <div class="article-title">SSE Streaming with FastAPI Broke When I Added Middleware</div>
+          <div class="article-desc">Coming soon — BaseHTTPMiddleware, buffering, and the keep-alive fix</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-title">The engineer<br><em style="font-style:italic;font-family:Fraunces,serif;font-weight:300;color:var(--amber);">behind the code</em></h2>
+        <p>
+          I'm a Senior AI & Data Science Engineer based in <strong>Hyderabad, India</strong> — 
+          currently at <strong>Zensar Technologies</strong>, building production AI systems 
+          for Compass Digital's healthcare dining platform.
+        </p>
+        <p>
+          My work sits at the intersection of <strong>Generative AI and real-world deployment</strong> — 
+          which means I spend as much time thinking about error handling, 
+          token costs, and SSE streaming stability as I do about model selection and prompts.
+        </p>
+        <p>
+          Previously at <strong>Bain & Company</strong> and <strong>Evalueserve</strong>, 
+          building NLP systems, predictive models, and survey analytics pipelines 
+          across consumer products, logistics, and financial domains.
+        </p>
+        <div style="margin-top:2rem;">
+          <a href="Neha_Singh_Resume.pdf" class="btn btn-primary" download>Download Resume →</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">6<span>+</span></div>
+            <div class="stat-label">Years in AI & Data Science</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-label">API versions shipped in one platform</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Languages supported in production</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Companies · Bain · Evalueserve · Zensar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="contact-headline reveal">Let's build something<br><em>worth shipping</em></h2>
+    <p class="contact-sub reveal">Open to collaborations, speaking, and interesting problems.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:neha.singh@email.com" class="contact-link cl-amber">✉ Email Me</a>
+      <a href="https://linkedin.com/in/nehasingh" target="_blank" class="contact-link cl-ghost">LinkedIn →</a>
+      <a href="https://github.com/yourusername" target="_blank" class="contact-link cl-ghost">GitHub →</a>
+      <a href="https://medium.com/@yourhandle" target="_blank" class="contact-link cl-ghost">Medium →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  © 2025 Neha Singh · Hyderabad, India · Built with HTML, CSS & a lot of production debugging
+</footer>
+
+<!-- ── JS ── -->
+<script>
+  // Build hero grid cells
+  const grid = document.getElementById('heroGrid');
+  for (let i = 0; i < 48; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'hero-grid-cell';
+    grid.appendChild(cell);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
